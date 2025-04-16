@@ -1,4 +1,4 @@
-<a href ="." target="blank"><img align="center" src="https://github.com/tandpfun/skill-icons/blob/main/icons/MySQL-Dark.svg/" alt="icon_mysql" height="30" width="40" 
+<a href ="." target="blank"><img align="center" src="https://github.com/tandpfun/skill-icons/blob/main/icons/MySQL-Dark.svg/" alt="icon_mysql" height="50" width="50" 
 /></a> 
 # Repositorio de conceptos de MYSQL
 
