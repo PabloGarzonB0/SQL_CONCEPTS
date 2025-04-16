@@ -53,3 +53,43 @@ mysql-study/
 
 ----
 ## Consideraciones
+En el esquema anterior se tratara el contenido del repositorio cubriendo lo esencial respecto a:
+- Fundamentos de SQL y estructura
+- Creacion, modificacion y eliminacion de bases de datos y tablas (DDL)
+- Manipulacion de datos (DML)
+- Consultas simples y avanzadas (Joins, subconsultas, funciones)
+- Procedimientos almacenados, triggers y vistas
+- Buenasa practicas y modelado de bases de datos
+- Ejercicios practicos y retos de nivel progresivo
+  
+# Requisitos
+Para mayor comodidad se puede trabajr con interfaz grafica para escribir tus sentencias o de otra forma utilizar **MySQL Server** para acceder al espacio de manipulacion de bases de datos.
+
+  - [MySQL Workbench](https://www.mysql.com/products/workbench/)
+  - [phpMyAdmin](https://www.phpmyadmin.net/)
+  - [DBeaver](https://dbeaver.io/download/)
+
+Si pretende realizar operaciones sobre MYSQL SERVER, puede ingresar de la siguiente manera:
+```bash
+
+# Dirijase a la ruta donde se encuentra Mysql server 8.0
+
+cd c:\\Program Files\\MYSQL\\MYSQL Server 8.0\\Bin
+# Ingrese sus credenciales para acceder como el usuario host
+path \\Mysql -u localhost -p
+
+# Ingrese su contrasena de Mysql
+****
+```
+
+## 🧠 Recursos recomendados
+
+Consulta el archivo [`recursos.md`](./recursos.md) para una lista curada de documentación oficial, tutoriales y cursos complementarios.
+
+Este repositorio es de uso personal, pero si deseas contribuir con ejercicios, ejemplos o sugerencias, eres bienvenido/a. Abre un *pull request* o crea un *issue*.
+
+---
+
+**Licencia**  
+Este repositorio está bajo la licencia MIT. Puedes usarlo libremente para tus estudios.
+
