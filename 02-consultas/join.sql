@@ -25,3 +25,44 @@ SELECT COUNT(*) FROM tabla_de_clientes;
 SELECT DISTINCT A.DNI, A.NOMBRE, B.DNI 
 FROM tabla_de_clientes A INNER JOIN facturas B
 ON A.DNI = B.DNI; 
+
+-- FULL JOIN TRACIONAL
+SELECT DISTINCT A.DNI, A.NOMBRE, B.DNI 
+FROM tabla_de_clientes A LEFT JOIN facturas B
+ON A.DNI = B.DNI
+WHERE B.DNI IS NULL  -- Esta linea permite ver que datos se encuentran nulos
+UNION 
+SELECT DISTINCT A.DNI, A.NOMBRE, B.DNI
+FROM tabla_de_clientes A RIGHT JOIN facturas B
+ON A.DNI = B.DNI
+WHERE A.DNI IS NULL;
+
+SELECT * FROM tabla_de_clientes;
+SELECT * FROM tabla_de_vendedores;
+-- UNION DE TABLAS DONDE EL BARRIO ES EL MISMO
+SELECT tc.NOMBRE, tc.BARRIO,
+tv.NOMBRE, tv.BARRIO
+FROM tabla_de_clientes tc INNER JOIN tabla_de_vendedores tv
+ON  tc.BARRIO = tv.BARRIO;
+
+-- TRAE COMPLETAMENT A LOS CLIENTES
+SELECT tc.NOMBRE, tc.BARRIO,
+tv.NOMBRE, tv.BARRIO
+FROM tabla_de_clientes tc LEFT JOIN tabla_de_vendedores tv
+ON  tc.BARRIO = tv.BARRIO;
+
+-- TRAE COMPLETAMENTE DE LOS VENDEDORES
+SELECT tc.NOMBRE, tc.BARRIO,
+tv.NOMBRE, tv.BARRIO, tv.VACACIONES
+FROM tabla_de_clientes tc RIGHT JOIN tabla_de_vendedores tv
+ON  tc.BARRIO = tv.BARRIO; -- Define  a las personas que se encuentran en el mismo barrio
+-- si los idenrificaramos por nombre, probablemente sean la misma persona
+
+SELECT tc.NOMBRE, tc.BARRIO,
+tv.NOMBRE, tv.BARRIO,  VACACIONES  -- Si el campo es diferenciable solamente se escribe sin la extension
+FROM tabla_de_clientes tc RIGHT JOIN tabla_de_vendedores tv
+ON  tc.BARRIO = tv.BARRIO;
+
+
+
+SELECT COUNT(*) FROM tabla_de_vendedores;
