@@ -83,9 +83,9 @@ path \\Mysql -u root -p
 ```
 
 ## 🧠 Recursos recomendados
-![MYSQL](Documentacino_oficial.png)
+![MYSQL](DocumentaciON_oficial.png)
 Para encontrar informacion precisa y exacta de las posibilidades de MYSQL por favor dirigirse a la documentacion oficioal de MYSQL 8.0, ahi encontrara todo lo que necesita respecto a la estrcutura del lenguaje, tipo de datos, optimacion y demas.
-Consulta el archivo [CLICK HERE](https://dev.mysql.com/doc/refman/8.4/en/functions.html) para una lista curada de documentación oficial, tutoriales y cursos complementarios.
+Consulta el archivo [MYSQL](https://dev.mysql.com/doc/refman/8.4/en/functions.html) para una lista curada de documentación oficial y para encontrar  tutoriales y cursos complementarios puedes visitar [W3schools](https://www.w3schools.com/mysql/default.asp).
 
 Este repositorio es de uso personal, pero si deseas contribuir con ejercicios, ejemplos o sugerencias, eres bienvenido/a. Abre un *pull request* o crea un *issue*.
 
