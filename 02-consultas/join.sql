@@ -66,3 +66,20 @@ ON  tc.BARRIO = tv.BARRIO;
 
 
 SELECT COUNT(*) FROM tabla_de_vendedores;
+
+-- Se toma los registros con los nombres del primer cliente
+-- Si hay campos que no sean iguales pero sean del mismo tipo estos se emparejan
+SELECT DISTINCT BARRIO, NOMBRE, 'Cliente' AS Tipo_cliente, DNI FROM tabla_de_clientes 
+UNION 
+SELECT DISTINCT BARRIO, NOMBRE, 'Vendedor' AS Tipo_vendedor, MATRICULA FROM tabla_de_vendedores;
+
+-- TADOS DE LAS TABLAS
+SELECT tc.NOMBRE, tc.BARRIO,
+tv.NOMBRE, tv.BARRIO, VACACIONES
+FROM tabla_de_clientes tc LEFT JOIN tabla_de_vendedores tv
+ON  tc.BARRIO = tv.BARRIO
+UNION
+SELECT tc.NOMBRE, tc.BARRIO,
+tv.NOMBRE, tv.BARRIO, VACACIONES
+FROM tabla_de_clientes tc RIGHT JOIN tabla_de_vendedores tv
+ON  tc.BARRIO = tv.BARRIO;
