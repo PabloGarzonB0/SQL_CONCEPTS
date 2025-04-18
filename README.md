@@ -1,4 +1,4 @@
-<a href ="." target="blank"><img align="center" src="https://github.com/tandpfun/skill-icons/blob/main/icons/MySQL-Dark.svg/" alt="icon_mysql" height="30" width="40" 
+<a href ="." target="blank"><img align="center" src="https://github.com/tandpfun/skill-icons/blob/main/icons/MySQL-Dark.svg/" alt="icon_mysql" height="50" width="50" 
 /></a> 
 # Repositorio de conceptos de MYSQL
 
@@ -74,9 +74,9 @@ Si pretende realizar operaciones sobre MYSQL SERVER, puede ingresar de la siguie
 
 # Dirijase a la ruta donde se encuentra Mysql server 8.0
 
-cd c:\\Program Files\\MYSQL\\MYSQL Server 8.0\\Bin
-# Ingrese sus credenciales para acceder como el usuario host
-path \\Mysql -u localhost -p
+cd c:\\Program Files\\MYSQL\\MYSQL Server 8.0\\Bin conectado en el puerto 3306 
+# Ingrese sus credenciales para acceder como el usuario root
+path \\Mysql -u root -p
 
 # Ingrese su contrasena de Mysql
 ****
