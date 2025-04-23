@@ -1,1 +1,2 @@
-## En este documento se describe el proyecto a realizarse con MYSQL
+## Empresa comercializadora de productos de frutas
+
