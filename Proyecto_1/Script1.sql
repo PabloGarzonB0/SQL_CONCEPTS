@@ -41,6 +41,8 @@ DELIMITER ;
 SELECT COUNT(*) FROM empresa.tb_clientes; -- Contar el total de clientes
 DELIMITER $$
 -- Cliente aleatorio
+USE EMPRESA;
+DROP FUNCTION IF EXISTS generar_cliente_aleatorio;
 CREATE FUNCTION generar_cliente_aleatorio()
 RETURNS VARCHAR(11)
 BEGIN
@@ -49,10 +51,50 @@ BEGIN
     DECLARE v_aleatorio INT;
     SET vmax = (SELECT COUNT(*) FROM empresa.tb_clientes); -- Cuenta el numero de clientes que existen
     SET v_aleatorio = generar_numero_aleatorio(1, vmax); -- Seleccion de un cliente aleatorio
-    
+    SET v_aleatorio = v_aleatorio + 1;
+    SELECT DNI INTO vcliente FROM tb_clientes LIMIT v_aleatorio, 1; -- Seleccion del cliente aleatorio
     RETURN vcliente;
+END$$
+
+DELIMITER;
+DROP FUNCTION IF EXISTS generar_producto_aleatorio;
+DELIMITER$$
+CREATE FUNCTION generar_producto_aleatorio()
+RETURNS VARCHAR(10)
+BEGIN
+    DECLARE vresultado VARCHAR(10);
+    DECLARE vmax INT;
+    DECLARE v_aleatorio INT;
+    SET vmax = (SELECT COUNT(*) FROM empresa.tb_productos); -- Cuenta el numero de clientes que existen
+    SET v_aleatorio = generar_numero_aleatorio(1, vmax); -- Seleccion de un cliente aleatorio
+    SET v_aleatorio = v_aleatorio - 1;
+    SELECT CODIGO_PK INTO vresultado FROM empresa.tb_productos LIMIT v_aleatorio, 1; -- Seleccion del cliente aleatorio
+    RETURN vresultado;
+END$$
+
+DELIMITER;
+DROP FUNCTION IF EXISTS generar_vendedor_aleatorio;
+DELIMITER$$
+CREATE FUNCTION generar_vendedor_aleatorio()
+RETURNS VARCHAR(5)
+BEGIN
+    DECLARE vresultado VARCHAR(5);
+    DECLARE vmax INT;
+    DECLARE v_aleatorio INT;
+    SET vmax = (SELECT COUNT(*) FROM empresa.tb_vendedor); -- Cuenta el numero de clientes que existen
+    SET v_aleatorio = generar_numero_aleatorio(1, vmax); -- Seleccion de un cliente aleatorio
+    SET v_aleatorio = v_aleatorio - 1;
+    SELECT MATRICULA_PK INTO vresultado FROM empresa.tb_vendedor LIMIT v_aleatorio, 1; -- Seleccion del cliente aleatorio
+    RETURN vresultado;
 END$$
 
 DELIMITER;
 
 
+
+SELECT generar_vendedor_aleatorio(); -- Seleccion de un vendedor aleatorio
+SELECT generar_cliente_aleatorio(); -- Seleccion de un cliente aleatorio
+
+
+
+SELECT * FROM empresa.tb_clientes Limit 5,10;
