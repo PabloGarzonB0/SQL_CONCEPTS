@@ -26,7 +26,7 @@ contenindo CODIGO, PRECIO, CANTIDAD
  */
 
  SELECT FLOOR((RAND()*(250 - 20 + 1) + 20)) AS ALEATORIO;  -- Numeros aleatorios entre 0 y 1
-
+USE EMPRESA;
  DELIMITER $$
 CREATE FUNCTION generar_numero_aleatorio(min INT, max INT)
 RETURNS INT
@@ -36,3 +36,23 @@ BEGIN
     RETURN vresultado;
 END$$
 DELIMITER ;
+
+
+SELECT COUNT(*) FROM empresa.tb_clientes; -- Contar el total de clientes
+DELIMITER $$
+-- Cliente aleatorio
+CREATE FUNCTION generar_cliente_aleatorio()
+RETURNS VARCHAR(11)
+BEGIN
+    DECLARE vcliente VARCHAR(11);
+    DECLARE vmax INT;
+    DECLARE v_aleatorio INT;
+    SET vmax = (SELECT COUNT(*) FROM empresa.tb_clientes); -- Cuenta el numero de clientes que existen
+    SET v_aleatorio = generar_numero_aleatorio(1, vmax); -- Seleccion de un cliente aleatorio
+    
+    RETURN vcliente;
+END$$
+
+DELIMITER;
+
+
