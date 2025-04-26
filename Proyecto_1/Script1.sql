@@ -119,9 +119,35 @@ BEGIN
     WHILE vcontador <= vitems
     DO	
 		SET vproducto = generar_producto_aleatorio();
-        SET vcantidad = generar_numero_aleatorio(1,max_cantidad);
-        SELECT PRECIO INTO vprecio FROM tb_productos WHERE CODIGO_PK = vproducto;
-        INSERT INTO tb_items_vendidos(NUMERO, CODIGO, CANTIDAD, PRECIO) VALUES (vitems, vproducto, vcantidad, vprecio);
-        SET vcontador = vcontador + 1;
+        SELECT COUNT(*) INTO vnumitems FROM tb_items_vendidos 
+        WHERE CODIGO = vproducto AND NUMERO = vnfactura;
+        -- VALIDACION DE NO DUPLICIDAD
+        IF vnumitems = 0 THEN
+			SET vcantidad = generar_numero_aleatorio(1,max_cantidad);
+			SELECT PRECIO_LISTA INTO vprecio FROM tb_productos WHERE CODIGO_PK = vproducto;
+			INSERT INTO tb_items_vendidos(NUMERO, CODIGO, CANTIDAD, PRECIO) VALUES (vitems, vproducto, vcantidad, vprecio);
+			SET vcontador = vcontador + 1;
+		END IF;
     END WHILE;
 END $$
+
+CALL sp_venta ('20210619', 100, 100);
+SELECT * FROM tb_venta WHERE IMPUESTO = 0.16;
+SELECT MAX(NUMERO) + 1 FROM tb_venta;  -- SE VISUALIZA COMO UN VARCHAR
+SELECT COUNT(*) FROM tb_items_vendidos;
+
+SELECT A.FECHA, SUM(B.CANTIDAD*B.PRECIO) AS FACTURA
+FROM tb_venta A INNER JOIN tb_items_vendidos B
+ON A.NUMERO = B.NUMERO
+WHERE A.FECHA = '20210619'
+GROUP BY A.FECHA;
+
+
+SELECT * FROM tb_items_vendidos;
+
+-- CONSULTA PARA CALCULAR EL IMPUESTO TOTAL DE PAGO PARA EL ANNO 2021 REDONDEANDO
+SELECT YEAR(F.FECHA) AS ANNO, CEIL(SUM(F.IMPUESTO*IV.PRECIO*IV.CANTIDAD)) AS RESULTADO
+FROM tb_venta F INNER JOIN tb_items_vendidos IV
+WHERE YEAR(FECHA) = '2021'
+GROUP BY ANNO;
+
