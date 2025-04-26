@@ -58,6 +58,8 @@ END$$
 
 DELIMITER;
 DROP FUNCTION IF EXISTS generar_producto_aleatorio;
+USE empresa;
+DROP FUNCTION IF EXISTS generar_producto_aleatorio;
 DELIMITER$$
 CREATE FUNCTION generar_producto_aleatorio()
 RETURNS VARCHAR(10)
@@ -92,9 +94,25 @@ DELIMITER;
 
 
 
-SELECT generar_vendedor_aleatorio(); -- Seleccion de un vendedor aleatorio
-SELECT generar_cliente_aleatorio(); -- Seleccion de un cliente aleatorio
+-- Consulta de cliente - producto - vendedor aleatorios
+SELECT generar_cliente_aleatorio() AS CLIENTE, generar_producto_aleatorio() AS PRODUCTO,
+generar_vendedor_aleatorio() AS VENDEDOR;
 
+SELECT * FROM empresa.tb_clientes Limit 5,10; --
 
-
-SELECT * FROM empresa.tb_clientes Limit 5,10;
+DELIMITER $$
+CREATE PROCEDURE sp_venta (fecha DATE, max_item INT, max_cantidad INT)
+BEGIN
+	DECLARE vcliente VARCHAR(11);
+    DECLARE vproducto VARCHAR(10);
+    DECLARE vvendedor VARCHAR(5);
+    DECLARE cantidad INT;
+    DECLARE precio FLOAT;
+    DECLARE vitems INT;
+    DECLARE vnfactura INT;
+    SELECT MAX(NUMERO) + 1 INTO vnfactura FROM tb_venta;
+    SET vcliente = generar_cliente_aleatorio();
+    SET vvendedor = generar_vendedor_aleatorio();
+    INSERT INTO tb_venta(NUMERO, FECHA, DNI, MATRICULA, IMPUESTO) VALUES (vnfactura, fecha, vcliente, vvendedor, 0.16);
+    SET vitems = generar_numero_aleatorio(1, max_item);
+END $$
