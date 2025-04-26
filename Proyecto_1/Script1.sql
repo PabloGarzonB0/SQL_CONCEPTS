@@ -106,13 +106,22 @@ BEGIN
 	DECLARE vcliente VARCHAR(11);
     DECLARE vproducto VARCHAR(10);
     DECLARE vvendedor VARCHAR(5);
-    DECLARE cantidad INT;
-    DECLARE precio FLOAT;
+    DECLARE vcantidad INT;
+    DECLARE vprecio FLOAT;
     DECLARE vitems INT;
     DECLARE vnfactura INT;
+    DECLARE vcontador INT DEFAULT 1;
     SELECT MAX(NUMERO) + 1 INTO vnfactura FROM tb_venta;
     SET vcliente = generar_cliente_aleatorio();
     SET vvendedor = generar_vendedor_aleatorio();
     INSERT INTO tb_venta(NUMERO, FECHA, DNI, MATRICULA, IMPUESTO) VALUES (vnfactura, fecha, vcliente, vvendedor, 0.16);
-    SET vitems = generar_numero_aleatorio(1, max_item);
+    SET vitems = generar_numero_aleatorio(1, max_item);  -- Genera un numero aleatoio en un rango de 1 hasta el numero seleccionado
+    WHILE vcontador <= vitems
+    DO	
+		SET vproducto = generar_producto_aleatorio();
+        SET vcantidad = generar_numero_aleatorio(1,max_cantidad);
+        SELECT PRECIO INTO vprecio FROM tb_productos WHERE CODIGO_PK = vproducto;
+        INSERT INTO tb_items_vendidos(NUMERO, CODIGO, CANTIDAD, PRECIO) VALUES (vitems, vproducto, vcantidad, vprecio);
+        SET vcontador = vcontador + 1;
+    END WHILE;
 END $$
