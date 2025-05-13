@@ -246,4 +246,11 @@ CREATE TABLE IF NOT EXISTS tabla_prueba2 (
 
 ALTER TABLE tabla_prueba ENGINE = InnoDB;
 
-SHOW ENGINES
+SHOW VARIABLES WHERE Variable_Name LIKE '%dir';
+
+-- crear bases de datos medianate mysqldump
+-- mysqldump -u root -p --databases sakila > sakila.sql
+
+LOCK INSTANCE for BACKUP;
+-- Comandos para realizar de forma manual el backup de la base de datos
+UNLOCK INSTANCE;
