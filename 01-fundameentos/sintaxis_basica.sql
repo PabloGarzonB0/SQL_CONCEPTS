@@ -270,3 +270,6 @@ GROUP BY
     A.CODIGO_DEL_PRODUCTO,
     YEAR(FECHA_VENTA)
 ORDER BY A.CODIGO_DEL_PRODUCTO, YEAR(FECHA_VENTA);
+
+-- Visualizacion de costo de una consulta SQL
+EXPLAIN FORMAT = JSON select A.CODIGO_DEL_PRODUCTO FROM tabla_de_productos A \G;
