@@ -17,3 +17,24 @@ En este escenario los datos son extraidos de las siguientes fuentes:
 - Datos de clientes generados como un archivo CSV desde un sistema de gestion de relaciones con clientes personalizados 
 - Informacion de productos mantenida en una hoja de calculo exportada de la base de datos de tu proveedor
 
+
+Considerando la figura 1, se identifican las siguientes entidades:
+
+Entities of data source
+1. Staff
+2. Sales_outlet
+3. Sales_Transaction
+4. Customer
+5. Producto
+
+
+The entity's attributes that will store the sales transaction data:
+1. Transaction_id
+2. Transaction_date
+3. Transaction_time
+4. Sales_outlet_id
+5. Staff_id
+6. Cusstomer_id
+7. Product_id
+8. Quantity
+9. price
